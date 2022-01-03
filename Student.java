@@ -1,52 +1,76 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class Student {
 
-	int id;
-	String name;
-	Address address;
-	static int count;
+	Map<Integer,Student > map=new HashMap<Integer, Student>();
 	
-	public Student()
-	{
-		
-	}
-	public Student(int id,String name,Address address)
-	{
-		this.id=id;
-		this.name=name;
-		this.address=address;
-		count++;
+	public static int id=10001;
+	private String name,email,cource;
+	
+	
+	
+	public Student(String name, String email, String cource) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.cource = cource;
+
 	}
 	
-	public void display()
-	{
-		System.out.println("Name "+this.name);
-		System.out.println("ID "+this.id);
-		System.out.println("Address "+this.address.toString());
-		
-	}
-	public static int total()
-	{
-		return count;
+	public Student() {
+		// TODO Auto-generated constructor stub
 	}
 
+	public void addStudent(Student s)
+	{
+		id++;
+		map.put(id,s);
+//		for(int i=id;i<=3;i++)
+//		{
+//			map.put(id,s);
+//		}
+//		System.out.println(map);
+		
+	}
+	
+	public static int getId() {
+		return id;
+	}
+	
+	public void viewStudents()
+	{
+		Set<Integer> key = map.keySet();
+		for(Integer i : key){
+			System.out.println(map.get(i));
+		}
+
+	}
+	
+	@Override
+	public String toString() {
+		return "Student [ name=" + name + ", email=" + email + ", cource=" + cource + "]";
+	}
+
+	public void viewStudent(Integer id)
+	{
+		System.out.println(map.get(id));
+	}
 	public static void main(String[] args) {
+		// TODO Auto-generated method stub
 		
-		Address a1=new Address(12, "Rajajinagar", "Banglore");
-		Student s1=new Student(1234,"Nikhil",a1);
-		s1.display();
+		Student s=new Student();
+		Student s1=new Student("nithin", "nithi@gmail.com", "MCA");
+		Student s2=new Student("rakshith", "rakshi@gmail.com", "MCA");
+		Student s3=new Student("nikhil", "n@gmail.com", "MCA");
 		
-		Address a2=new Address(13, "Yalahanka", "Banglore");
-		Student s2=new Student(1235,"Nithin",a2);
-		s2.display();
+		s.addStudent(s1);
+		s.addStudent(s2);
+		s.addStudent(s3);
 		
-		Address a3=new Address(14, "Rajajinagar", "Banglore");
-	    Student s3=new Student(1236,"Rakshith",a3);
-		s3.display();
-		
-		System.out.println("count of object  "+total());
-//		Student s=new Student();
-		
-		
-}
+		s.viewStudents();
+		s.viewStudent(10002);
+	}
+
 }

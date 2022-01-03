@@ -1,27 +1,48 @@
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Pro2 {
 
-	public static void main(String[] args) {
-		
-		int count_Ovels=0;
-		int count_consonants=0;
-		Scanner sc=new Scanner(System.in);
-		System.out.println("Enter the String");
-		String str=sc.nextLine();
-		String s[]=str.split("");
-		for(int i=0;i<=s.length-1;i++)
+	public String[] getResults(String names[]){
+		//Write your logic
+		ArrayList<String> al=new ArrayList<String>();
+		for(int i=0;i<names.length;i++)
 		{
-			if(s[i].equals("a") || s[i].equals("e") || s[i].equals("i") || s[i].equals("o") || s[i].equals("u") )
-			{
-				count_Ovels++;
-			}
-			else
-			{
-				count_consonants++;
-			}
+			al.add(names[i]);
 		}
-		System.out.println("NUmber of Ovels"+count_Ovels);
-		System.out.println("NUmber of consonants"+count_consonants++);
+		Collections.sort(al);
+		
+//		System.out.println(al);
+	    String[] str=al.toArray(new String[0]);
+	    String[] res=new String[str.length];
+	    int k=0;
+	    
+	    for(int j=0;j<str.length;j++)
+	    {
+	    	if(j<str.length/2)
+	    	{
+	    		res[k++]=str[j].toLowerCase();
+	    	}
+	    	else
+	    	{
+	    		res[k++]=str[j].toUpperCase();
+	    	}
+//	    	return str;
+	    }
+	    return res;
+	    
+		}
+	
+	public static void main(String[] args)
+	{
+		Pro2 pr=new Pro2();
+		String [] str= {"n","a","f","b"};
+		String[] res=pr.getResults(str);
+		
+		for(int i=0;i<res.length;i++)
+		{
+			System.out.print(res[i]);
+		}
 	}
 }

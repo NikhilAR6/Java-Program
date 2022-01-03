@@ -1,13 +1,44 @@
-import java.util.Scanner;
+import java.util.Collections;
+import java.util.Vector;
 
 public class Pro1 {
-public static void main(String[] args)
-{
-	System.out.print("Enter the String");
-	Scanner sc= new Scanner(System.in);
-	String str= sc.nextLine();
-	System.out.println("length of the string is "+str.length());  
-	System.out.println("Upper Case of the string is "+str.toUpperCase());
-	System.out.println("Lower Case of the string is "+str.toLowerCase());
-}
-}
+
+		public static void main(String[] args) {
+			int N = 100;
+
+			for (int i = 1; i <= N; i++) {
+
+				generatePrimes(i);
+			}
+
+		}
+
+		public static void generatePrimes(int no) {
+			Vector<Integer> v = new Vector<Integer>();
+			if (checkPrimes(no)) {
+				v.add(no);
+			}
+			showPrimes(v);
+		}
+
+		public static boolean checkPrimes(int n) {
+			if (n == 1 || n == 0)
+				return false;
+
+			for (int i = 2; i <= n / 2; i++) {
+
+				if (n % i == 0)
+					return false;
+			}
+
+			return true;
+		}
+
+		public static void showPrimes(Vector<Integer> vector) {
+			for (int i = 0; i < vector.size(); i++)
+
+				System.out.print(vector.get(i) + " ");
+		}
+	}
+	
+
